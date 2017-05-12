@@ -110,7 +110,8 @@ namespace MVC5_HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            客戶資料.DeleteFlag = true;
+            db.Entry(客戶資料).State= EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

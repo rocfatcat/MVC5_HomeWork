@@ -194,6 +194,7 @@
     <Compile Include="Controllers\CustomerBankContactManageController.cs" />
     <Compile Include="Controllers\CustomerBankManageController.cs" />
     <Compile Include="Controllers\CustomerInfoManageController.cs" />
+    <Compile Include="Controllers\CustomerManageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,7 +241,13 @@
     <Compile Include="Models\sysdiagrams.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModel\客戶列表.cs" />
+    <Compile Include="Models\ViewModel\SearchViewModel.cs" />
+    <Compile Include="Models\客戶列表.cs">
+      <DependentUpon>CustomerDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\客戶列表.Partial.cs">
+      <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>
     </Compile>
@@ -355,9 +362,11 @@
     <Content Include="Views\CustomerBankContactManage\Details.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Edit.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Index.cshtml" />
+    <Content Include="Views\CustomerManage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ValidatorAttribute\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
