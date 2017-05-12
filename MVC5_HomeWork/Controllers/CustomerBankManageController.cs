@@ -17,7 +17,7 @@ namespace MVC5_HomeWork.Controllers
         // GET: CustomerBankManager
         public ActionResult Index()
         {
-            var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料);
+            var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料).Where(x => x.刪除 != true);
             return View(客戶銀行資訊.ToList());
         }
 
@@ -115,9 +115,11 @@ namespace MVC5_HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = db.客戶銀行資訊.Find(id);
-            客戶銀行資訊.DeleteFlag = true;
+            客戶銀行資訊.刪除 = true;
+
             db.Entry(客戶銀行資訊).State = EntityState.Modified;
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

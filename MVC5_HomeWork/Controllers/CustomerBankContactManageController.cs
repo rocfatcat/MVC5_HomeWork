@@ -19,7 +19,7 @@ namespace MVC5_HomeWork.Controllers
         // GET: CustomerBankContactManage
         public ActionResult Index()
         {
-            var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料);
+            var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料).Where(x=>x.刪除 != true);
             return View(客戶聯絡人.ToList());
         }
 
@@ -117,7 +117,7 @@ namespace MVC5_HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
-            客戶聯絡人.DeleteFlag = true;
+            客戶聯絡人.刪除 = true;
             db.Entry(客戶聯絡人).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

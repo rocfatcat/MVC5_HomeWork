@@ -17,7 +17,7 @@ namespace MVC5_HomeWork.Controllers
         // GET: CustomerManage
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList());
+            return View(db.客戶資料.ToList().Where(x => x.刪除 != true));
         }
 
         // GET: CustomerManage/Details/5
@@ -110,7 +110,7 @@ namespace MVC5_HomeWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            客戶資料.DeleteFlag = true;
+            客戶資料.刪除 = true;
             db.Entry(客戶資料).State= EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
