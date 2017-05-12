@@ -1,5 +1,6 @@
 namespace MVC5_HomeWork.Models
 {
+    using MVC5_HomeWork.Models.ValidatorAttribute;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -23,16 +24,7 @@ namespace MVC5_HomeWork.Models
         public string 統一編號 { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
-        [RegularExpression(pattern: @"^\(?\d{2}\)?[\s\-]?\d{4}\-?\d{4}$",
-            ErrorMessage = @"電話格式必須符合下列樣式
-02-0000-0000
-02 0000 0000
-02 0000-0000
-0200000000
-(02) 0000 0000
-(02) 0000-0000
-(02)-0000-0000"
-)]
+        [PhoneValidator]
         [Required]
         public string 電話 { get; set; }
         
