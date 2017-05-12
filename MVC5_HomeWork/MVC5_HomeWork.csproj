@@ -192,7 +192,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerBankContactManageController.cs" />
-    <Compile Include="Controllers\CustomerBankManagerController.cs" />
+    <Compile Include="Controllers\CustomerBankManageController.cs" />
     <Compile Include="Controllers\CustomerInfoManageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -240,6 +240,7 @@
     <Compile Include="Models\sysdiagrams.Partial.cs">
       <DependentUpon>EFGeneratePartialClass.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\客戶列表.cs" />
     <Compile Include="Models\客戶聯絡人.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>
     </Compile>
@@ -344,11 +345,11 @@
     <Content Include="Views\CustomerInfoManage\Details.cshtml" />
     <Content Include="Views\CustomerInfoManage\Edit.cshtml" />
     <Content Include="Views\CustomerInfoManage\Index.cshtml" />
-    <Content Include="Views\CustomerBankManager\Create.cshtml" />
-    <Content Include="Views\CustomerBankManager\Delete.cshtml" />
-    <Content Include="Views\CustomerBankManager\Details.cshtml" />
-    <Content Include="Views\CustomerBankManager\Edit.cshtml" />
-    <Content Include="Views\CustomerBankManager\Index.cshtml" />
+    <Content Include="Views\CustomerBankManage\Create.cshtml" />
+    <Content Include="Views\CustomerBankManage\Delete.cshtml" />
+    <Content Include="Views\CustomerBankManage\Details.cshtml" />
+    <Content Include="Views\CustomerBankManage\Edit.cshtml" />
+    <Content Include="Views\CustomerBankManage\Index.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Create.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Delete.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Details.cshtml" />

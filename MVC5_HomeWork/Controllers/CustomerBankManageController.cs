@@ -10,7 +10,7 @@ using MVC5_HomeWork.Models;
 
 namespace MVC5_HomeWork.Controllers
 {
-    public class CustomerBankManagerController : Controller
+    public class CustomerBankManageController : Controller
     {
         private 客戶資料Entities db = new 客戶資料Entities();
 
