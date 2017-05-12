@@ -19,10 +19,18 @@ namespace MVC5_HomeWork.Controllers
         // GET: CustomerBankContactManage
         public ActionResult Index()
         {
+
             var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料).Where(x=>x.刪除 != true);
             return View(客戶聯絡人.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(客戶銀行資訊SearchModel search)
+        {
+            var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料).Where(x => x.刪除 != true);
+            return View(客戶聯絡人.ToList());
+        }
         // GET: CustomerBankContactManage/Details/5
         public ActionResult Details(int? id)
         {

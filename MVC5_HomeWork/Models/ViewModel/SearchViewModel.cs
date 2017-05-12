@@ -10,4 +10,13 @@ namespace MVC5_HomeWork.Models
         public string ColumnName { get; set; }
         public string SearchText { get; set; }
     }
+
+    public class 客戶銀行資訊SearchModel
+    {
+        public string 銀行名稱 { get; set; }
+        public string 銀行代碼 { get; set; }
+        public string 分行代碼 { get; set; }
+        public string 帳戶名稱 { get; set; }
+        public string 帳戶號碼 { get; set; }
+    }
 }

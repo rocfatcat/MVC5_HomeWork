@@ -21,6 +21,25 @@ namespace MVC5_HomeWork.Controllers
             return View(客戶銀行資訊.ToList());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(客戶銀行資訊SearchModel search)
+        {
+            var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料).Where(x => x.刪除 != true);
+            if(!string.IsNullOrEmpty(search.分行代碼))
+                客戶銀行資訊 = 客戶銀行資訊.Where(x => x.分行代碼.ToString().Contains(search.分行代碼));
+            if (!string.IsNullOrEmpty(search.帳戶名稱))
+                客戶銀行資訊 = 客戶銀行資訊.Where(x => x.帳戶名稱.Contains( search.帳戶名稱));
+            if (!string.IsNullOrEmpty(search.帳戶號碼))
+                客戶銀行資訊 = 客戶銀行資訊.Where(x => x.帳戶號碼.Contains(search.帳戶號碼));
+            if (!string.IsNullOrEmpty(search.銀行代碼))
+                客戶銀行資訊 = 客戶銀行資訊.Where(x => x.銀行代碼.ToString().Contains(search.銀行代碼));
+            if (!string.IsNullOrEmpty(search.銀行名稱))
+                客戶銀行資訊 = 客戶銀行資訊.Where(x => x.銀行名稱.Contains(search.銀行名稱));
+            ViewBag.SearchModel = search;
+            return View(客戶銀行資訊.ToList());
+        }
+
         // GET: CustomerBankManager/Details/5
         public ActionResult Details(int? id)
         {
