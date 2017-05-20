@@ -16,9 +16,10 @@ namespace MVC5_HomeWork.Controllers
 
         // GET: CustomerManage
         [CustomerCategoryList]
-        public ActionResult Index()
+        public ActionResult Index(客戶資料搜尋ViewModel search_model)
         {
-            return View(客戶資料repo.All().Where(x => x.刪除 != true));
+          
+            return View(客戶資料repo.Get客戶資料(search_model));
         }
 
         // GET: CustomerManage/Details/5

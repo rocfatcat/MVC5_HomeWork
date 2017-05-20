@@ -10,6 +10,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "CustomerInfoManage", FormMethod.Get))
+{
+    @Html.Editor("客戶類型Type", "CustomerCategory");
+
+    @Html.TextBox("SearchKeyword", null,new { type = "search", pleaseholder = "please input keyword", @class = "form-control" })
+
+    <button type="submit">Search</button>
+}
 <table class="table">
     <tr>
         <th>

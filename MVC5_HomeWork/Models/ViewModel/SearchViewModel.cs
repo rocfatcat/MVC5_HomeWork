@@ -19,4 +19,10 @@ namespace MVC5_HomeWork.Models
         public string 帳戶名稱 { get; set; }
         public string 帳戶號碼 { get; set; }
     }
+
+    public class 客戶資料搜尋ViewModel
+    {
+        public string 客戶類型Type { get; set; }
+        public string SearchKeyword { get; set; }
+    }
 }
