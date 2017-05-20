@@ -193,6 +193,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerBankContactManageController.cs" />
     <Compile Include="Controllers\CustomerBankManageController.cs" />
+    <Compile Include="Controllers\CustomerCategoryListAttribute.cs" />
     <Compile Include="Controllers\CustomerInfoManageController.cs" />
     <Compile Include="Controllers\CustomerManageController.cs" />
     <Compile Include="Controllers\EntityValidationErrors.cs" />

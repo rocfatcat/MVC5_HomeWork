@@ -1,3 +1,10 @@
 ﻿@model string
 
-@Html.DropDownList("客戶分類",null,new {@class="form-control" })
+@{
+    //var items = new List<SelectListItem>();
+    //items = ((SelectList)ViewBag.客戶分類).Items.Cast<List<SelectListItem>()>();
+    var items = new SelectList(ViewBag.客戶分類,"Value","Text",Model);
+
+}
+
+@Html.DropDownList("",items,"無分類",new {@class="form-control" })

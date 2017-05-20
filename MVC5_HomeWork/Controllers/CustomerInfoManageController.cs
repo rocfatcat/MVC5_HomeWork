@@ -15,12 +15,14 @@ namespace MVC5_HomeWork.Controllers
         private 客戶資料Repository 客戶資料repo =RepositoryHelper.Get客戶資料Repository();
 
         // GET: CustomerManage
+        [CustomerCategoryList]
         public ActionResult Index()
         {
             return View(客戶資料repo.All().Where(x => x.刪除 != true));
         }
 
         // GET: CustomerManage/Details/5
+        [CustomerCategoryList]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,14 +38,10 @@ namespace MVC5_HomeWork.Controllers
         }
 
         // GET: CustomerManage/Create
+        [CustomerCategoryList]
         public ActionResult Create()
         {
-            var items = new List<SelectListItem>();
-            items.Add(new SelectListItem() { Text = "優良", Value = "優良" });
-            items.Add(new SelectListItem() { Text = "標準", Value = "標準" });
-            items.Add(new SelectListItem() { Text = "惡劣", Value = "惡劣" });
 
-            ViewBag.客戶分類 = new SelectList(items, "Value", "Text");
             return View();
         }
 
@@ -52,9 +50,11 @@ namespace MVC5_HomeWork.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
+        [CustomerCategoryList]
+        public ActionResult Create(int id , FormCollection form)
         {
-            if (ModelState.IsValid)
+            客戶資料 客戶資料 = 客戶資料repo.Find(id);
+            if (TryUpdateModel(客戶資料))
             {
                 客戶資料repo.Add(客戶資料);
                 客戶資料repo.UnitOfWork.Commit();
@@ -65,6 +65,7 @@ namespace MVC5_HomeWork.Controllers
         }
 
         // GET: CustomerManage/Edit/5
+        [CustomerCategoryList]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,6 +85,7 @@ namespace MVC5_HomeWork.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomerCategoryList]
         public ActionResult Edit(int id,FormCollection form)
         {
             var 客戶資料 = 客戶資料repo.Find(id);
@@ -102,6 +104,7 @@ namespace MVC5_HomeWork.Controllers
         }
 
         // GET: CustomerManage/Delete/5
+        [CustomerCategoryList]
         public ActionResult Delete(int? id)
         {
             if (id == null)
