@@ -25,4 +25,10 @@ namespace MVC5_HomeWork.Models
         public string 客戶類型Type { get; set; }
         public string SearchKeyword { get; set; }
     }
+
+    public class OrderViewModel
+    {
+        public string SortColumn { get; set; }
+        public bool Desc { get; set; }
+    }
 }
