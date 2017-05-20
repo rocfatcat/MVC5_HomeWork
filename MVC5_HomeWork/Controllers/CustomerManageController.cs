@@ -13,7 +13,7 @@ namespace MVC5_HomeWork.Controllers
     public class CustomerManageController : Controller
     {
         private 客戶資料Entities db = new 客戶資料Entities();
-
+        
         // GET: CustomerManage
         public ActionResult Index()
         {

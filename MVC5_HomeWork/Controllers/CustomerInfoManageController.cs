@@ -12,12 +12,12 @@ namespace MVC5_HomeWork.Controllers
 {
     public class CustomerInfoManageController : Controller
     {
-        private 客戶資料Entities db = new 客戶資料Entities();
+        private 客戶資料Repository 客戶資料repo =RepositoryHelper.Get客戶資料Repository();
 
         // GET: CustomerManage
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList().Where(x => x.刪除 != true));
+            return View(客戶資料repo.All().Where(x => x.刪除 != true));
         }
 
         // GET: CustomerManage/Details/5
@@ -27,7 +27,7 @@ namespace MVC5_HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
+            客戶資料 客戶資料 = 客戶資料repo.Find(id.Value);
             if (客戶資料 == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,8 @@ namespace MVC5_HomeWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.客戶資料.Add(客戶資料);
-                db.SaveChanges();
+                客戶資料repo.Add(客戶資料);
+                客戶資料repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +65,7 @@ namespace MVC5_HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
+            客戶資料 客戶資料 = 客戶資料repo.Find(id.Value);
             if (客戶資料 == null)
             {
                 return HttpNotFound();
@@ -78,12 +78,18 @@ namespace MVC5_HomeWork.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,客戶名稱,統一編號,電話,傳真,地址,Email")] 客戶資料 客戶資料)
+        public ActionResult Edit(int id,FormCollection form)
         {
-            if (ModelState.IsValid)
+            var 客戶資料 = 客戶資料repo.Find(id);
+
+            if(客戶資料 == null)
             {
-                db.Entry(客戶資料).State = EntityState.Modified;
-                db.SaveChanges();
+                return HttpNotFound();
+            }
+
+            if (TryUpdateModel< 客戶資料>(客戶資料))
+            {
+                客戶資料repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View(客戶資料);
@@ -96,7 +102,7 @@ namespace MVC5_HomeWork.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
+            客戶資料 客戶資料 = 客戶資料repo.Find(id.Value);
             if (客戶資料 == null)
             {
                 return HttpNotFound();
@@ -109,10 +115,10 @@ namespace MVC5_HomeWork.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            客戶資料 客戶資料 = db.客戶資料.Find(id);
-            客戶資料.刪除 = true;
-            db.Entry(客戶資料).State= EntityState.Modified;
-            db.SaveChanges();
+            客戶資料 客戶資料 = 客戶資料repo.Find(id);
+
+            客戶資料repo.Delete(客戶資料);
+            客戶資料repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +126,6 @@ namespace MVC5_HomeWork.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
             }
             base.Dispose(disposing);
         }
