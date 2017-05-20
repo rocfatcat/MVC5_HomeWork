@@ -38,6 +38,12 @@ namespace MVC5_HomeWork.Controllers
         // GET: CustomerManage/Create
         public ActionResult Create()
         {
+            var items = new List<SelectListItem>();
+            items.Add(new SelectListItem() { Text = "優良", Value = "優良" });
+            items.Add(new SelectListItem() { Text = "標準", Value = "標準" });
+            items.Add(new SelectListItem() { Text = "惡劣", Value = "惡劣" });
+
+            ViewBag.客戶分類 = new SelectList(items, "Value", "Text");
             return View();
         }
 

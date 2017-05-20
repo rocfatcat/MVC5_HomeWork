@@ -401,6 +401,7 @@
     <Content Include="Views\CustomerBankContactManage\Edit.cshtml" />
     <Content Include="Views\CustomerBankContactManage\Index.cshtml" />
     <Content Include="Views\CustomerManage\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CustomerCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

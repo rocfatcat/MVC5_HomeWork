@@ -1,6 +1,5 @@
 namespace MVC5_HomeWork.Models
 {
-    using MVC5_HomeWork.Models.ValidatorAttribute;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -24,7 +23,6 @@ namespace MVC5_HomeWork.Models
         public string 統一編號 { get; set; }
         
         [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
-        [PhoneValidator]
         [Required]
         public string 電話 { get; set; }
         
@@ -33,10 +31,15 @@ namespace MVC5_HomeWork.Models
         
         [StringLength(100, ErrorMessage="欄位長度不得大於 100 個字元")]
         public string 地址 { get; set; }
-
-        [RegularExpression(pattern: @"^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", ErrorMessage = "Email 格式不符合")]
+        
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         public string Email { get; set; }
+        [Required]
+        public bool 刪除 { get; set; }
+        
+        [UIHint("CustomerCategory")]
+        [StringLength(50, ErrorMessage="欄位長度不得大於 50 個字元")]
+        public string 客戶分類 { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }
