@@ -4,7 +4,10 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section breadcrumb
+{
+    @Html.Partial("breadcrumb")
+}
 <h2>Details</h2>
 
 <div>

@@ -1,0 +1,10 @@
+﻿
+    <li>
+        <i class="icon-home"></i>
+        <a href="@Url.Action("Index", this.ViewContext.RouteData.Values["controller"].ToString())">@this.ViewContext.RouteData.Values["controller"].ToString()</a>
+        <i class="icon-angle-right"></i>
+    </li>
+    <li>
+        <a href="@Url.Action(this.ViewContext.RouteData.Values["action"].ToString(),this.ViewContext.RouteData.Values["controller"].ToString())">@this.ViewContext.RouteData.Values["action"].ToString()</a>
+    </li>
+

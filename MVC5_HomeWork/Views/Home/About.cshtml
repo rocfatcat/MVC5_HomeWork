@@ -1,6 +1,11 @@
 ﻿@{
     ViewBag.Title = "About";
 }
+@section breadcrumb
+{
+    @Html.Partial("breadcrumb")
+}
+
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
