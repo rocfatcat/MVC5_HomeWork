@@ -26,6 +26,10 @@ namespace MVC5_HomeWork.Models
         public string SearchKeyword { get; set; }
     }
 
+    public class 客戶聯絡人搜尋ViewModel
+    {
+        public string 職稱Type { get; set; }
+    }
     public class OrderViewModel
     {
         public string SortColumn { get; set; }

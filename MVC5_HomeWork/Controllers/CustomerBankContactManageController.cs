@@ -21,10 +21,19 @@ namespace MVC5_HomeWork.Controllers
             客戶資料repo = RepositoryHelper.Get客戶資料Repository(客戶聯絡人repo.UnitOfWork);
         }
         // GET: CustomerBankContactManage
-        public ActionResult Index()
+        public ActionResult Index(客戶聯絡人搜尋ViewModel search_model, OrderViewModel order_model)
         {
+            var 職稱 = 客戶聯絡人repo.All().Select(x => x.職稱).Distinct();
 
-            var 客戶聯絡人 = 客戶聯絡人repo.All().Where(x=>x.刪除 != true);
+            var 職稱種類 = new List<SelectListItem>();
+
+            foreach (var item in 職稱)
+            {
+                職稱種類.Add(new SelectListItem() { Text = item, Value = item });
+            }
+
+            ViewBag.職稱種類 = 職稱種類;
+            var 客戶聯絡人 = 客戶聯絡人repo.Get客戶聯絡人(search_model:search_model, order_model: order_model);
             return View(客戶聯絡人.ToList());
         }
 

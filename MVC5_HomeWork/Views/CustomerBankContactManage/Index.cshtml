@@ -10,22 +10,39 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "CustomerBankContactManage", FormMethod.Get))
+{
+    @Html.DropDownList("職稱Type", (IEnumerable<SelectListItem>)ViewBag.職稱種類, "無分類", new { @class = "form-control" })
+    <button type="submit">Search</button>
+}
+
 <table class="table">
     <tr>
         <th>
+            @Html.ActionLink("▲", "Index", new { SortColumn = "職稱", Desc = false })
             @Html.DisplayNameFor(model => model.職稱)
+            @Html.ActionLink("▼", "Index", new { SortColumn = "職稱", Desc = true })
         </th>
         <th>
+            @Html.ActionLink("▲", "Index", new { SortColumn = "姓名", Desc = false })
             @Html.DisplayNameFor(model => model.姓名)
+            @Html.ActionLink("▼", "Index", new { SortColumn = "姓名", Desc = true })
         </th>
         <th>
+            @Html.ActionLink("▲", "Index", new { SortColumn = "Email", Desc = false })
             @Html.DisplayNameFor(model => model.Email)
+            @Html.ActionLink("▼", "Index", new { SortColumn = "Email", Desc = true })
         </th>
         <th>
+            @Html.ActionLink("▲", "Index", new { SortColumn = "手機", Desc = false })
             @Html.DisplayNameFor(model => model.手機)
+            @Html.ActionLink("▼", "Index", new { SortColumn = "手機", Desc = true })
         </th>
         <th>
+            @Html.ActionLink("▲", "Index", new { SortColumn = "電話", Desc = false })
             @Html.DisplayNameFor(model => model.電話)
+            @Html.ActionLink("▼", "Index", new { SortColumn = "電話", Desc = true })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.客戶資料.客戶名稱)
