@@ -12,20 +12,17 @@ namespace MVC5_HomeWork.Controllers
 {
     public class CustomerManageController : Controller
     {
-        private 客戶資料Entities db = new 客戶資料Entities();
-        
+        private 客戶列表Repository 客戶列表Repo = RepositoryHelper.Get客戶列表Repository();
         // GET: CustomerManage
         public ActionResult Index()
         {
-            var 客戶資訊 = db.客戶列表;
-            return View(客戶資訊.ToList());
+            return View(客戶列表Repo.All());
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
             }
             base.Dispose(disposing);
         }
