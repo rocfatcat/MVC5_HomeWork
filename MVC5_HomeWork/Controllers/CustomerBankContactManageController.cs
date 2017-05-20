@@ -21,7 +21,7 @@ namespace MVC5_HomeWork.Controllers
             客戶資料repo = RepositoryHelper.Get客戶資料Repository(客戶聯絡人repo.UnitOfWork);
         }
         // GET: CustomerBankContactManage
-        public ActionResult Index(客戶聯絡人搜尋ViewModel search_model, OrderViewModel order_model)
+        public ActionResult Index(客戶聯絡人搜尋ViewModel search_model, OrderViewModel order_model , int? 客戶Id)
         {
             var 職稱 = 客戶聯絡人repo.All().Select(x => x.職稱).Distinct();
 

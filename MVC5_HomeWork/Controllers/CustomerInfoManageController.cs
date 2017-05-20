@@ -7,13 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC5_HomeWork.Models;
+using MVC5_HomeWork.Models.ViewModel;
 
 namespace MVC5_HomeWork.Controllers
 {
     public class CustomerInfoManageController : Controller
     {
         private 客戶資料Repository 客戶資料repo =RepositoryHelper.Get客戶資料Repository();
+        private 客戶聯絡人Repository 客戶聯絡人repo;
 
+        public CustomerInfoManageController()
+        {
+            客戶聯絡人repo = RepositoryHelper.Get客戶聯絡人Repository(客戶資料repo.UnitOfWork);
+        }
         // GET: CustomerManage
         [CustomerCategoryList]
         public ActionResult Index(客戶資料搜尋ViewModel search_model, OrderViewModel order)
@@ -131,7 +137,35 @@ namespace MVC5_HomeWork.Controllers
             客戶資料repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
-
+        [HttpPost]
+        public ActionResult BatchUpdateCustomerContact(int? id,List<ContactBatchUpdateModel> batch_data)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach(var data in batch_data)
+                {
+                    var contact = 客戶聯絡人repo.Find(data.Id);
+                    if(contact != null)
+                    {
+                        contact.Email = data.Email;
+                        contact.手機 = data.手機;
+                        contact.電話 = data.電話;
+                    }
+                }
+                客戶聯絡人repo.UnitOfWork.Commit();
+                return RedirectToAction("Details", new { id = id.Value });
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            客戶資料 客戶資料 = 客戶資料repo.Find(id.Value);
+            if (客戶資料 == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Details", 客戶資料);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

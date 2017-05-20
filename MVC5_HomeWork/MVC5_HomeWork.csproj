@@ -264,6 +264,7 @@
       <DependentUpon>IRepository.EF6..tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ValidatorAttribute\PhoneValidatorAttribute.cs" />
+    <Compile Include="Models\ViewModel\ContactBatchUpdateModel.cs" />
     <Compile Include="Models\ViewModel\SearchViewModel.cs" />
     <Compile Include="Models\客戶列表.cs">
       <DependentUpon>CustomerDBModel.tt</DependentUpon>
@@ -403,6 +404,7 @@
     <Content Include="Views\CustomerBankContactManage\Index.cshtml" />
     <Content Include="Views\CustomerManage\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CustomerCategory.cshtml" />
+    <Content Include="Views\CustomerInfoManage\ContactList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

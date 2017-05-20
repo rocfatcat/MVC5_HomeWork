@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MVC5_HomeWork.Models.客戶聯絡人>
+
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("BatchUpdateCustomerContact", "CustomerInfoManage"))
+{
+    @Html.Hidden("Id",ViewData["客戶Id"])
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("▲", "Index", new { SortColumn = "職稱", Desc = false })
+                @Html.DisplayNameFor(model => model.職稱)
+                @Html.ActionLink("▼", "Index", new { SortColumn = "職稱", Desc = true })
+            </th>
+            <th>
+                @Html.ActionLink("▲", "Index", new { SortColumn = "姓名", Desc = false })
+                @Html.DisplayNameFor(model => model.姓名)
+                @Html.ActionLink("▼", "Index", new { SortColumn = "姓名", Desc = true })
+            </th>
+            <th>
+                @Html.ActionLink("▲", "Index", new { SortColumn = "Email", Desc = false })
+                @Html.DisplayNameFor(model => model.Email)
+                @Html.ActionLink("▼", "Index", new { SortColumn = "Email", Desc = true })
+            </th>
+            <th>
+                @Html.ActionLink("▲", "Index", new { SortColumn = "手機", Desc = false })
+                @Html.DisplayNameFor(model => model.手機)
+                @Html.ActionLink("▼", "Index", new { SortColumn = "手機", Desc = true })
+            </th>
+            <th>
+                @Html.ActionLink("▲", "Index", new { SortColumn = "電話", Desc = false })
+                @Html.DisplayNameFor(model => model.電話)
+                @Html.ActionLink("▼", "Index", new { SortColumn = "電話", Desc = true })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.客戶資料.客戶名稱)
+            </th>
+            <th></th>
+        </tr>
+        @{ 
+            var batch_data = Model.ToArray();
+        }
+        @for( int i=0;i< batch_data.Count();i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => batch_data[i].Id)
+                    @Html.DisplayFor(modelItem => batch_data[i].職稱)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => batch_data[i].姓名)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => batch_data[i].Email)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => batch_data[i].手機)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => batch_data[i].電話)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => batch_data[i].客戶資料.客戶名稱)
+                </td>
+            </tr>
+        }
+
+
+    </table>
+    <button type="submit"> Update </button>
+}
